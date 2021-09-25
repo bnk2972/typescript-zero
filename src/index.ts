@@ -1,10 +1,10 @@
-const str = 'Beer' // String Literal Type
-const num = 100 // Number Literal Type
-const nickname: 'Beer' | 'Nick' = 'Beer'
-
-console.log(nickname)
-
-function permission(role: 'Admin' | 'Manager') {
-    return role
+function uppercaseFirstLetter(str: null | string | undefined) {
+    if (typeof str === 'string' && str.length) {
+        return str[0].toUpperCase()
+    }
+    return ''
 }
-console.log(permission('Admin'))
+
+uppercaseFirstLetter('Beer')
+uppercaseFirstLetter(null) //Compile Error
+uppercaseFirstLetter('')
