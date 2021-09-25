@@ -1,21 +1,14 @@
-// const roles: 'Admin' | 'Manager' | 'Staff' = 'Admin'
-// enum Role {
-//     Admin,
-//     Manager,
-//     Staff
-// }
-
-// enum Role {
-//     Admin = 'Admin',
-//     Manager = 'Manager',
-//     Staff = 'Staff'
-// }
-
-const enum Role {
-    Admin,
-    Manager,
-    Staff
+interface Person {
+    name: string;
+    age: number;
+    gender: string;
 }
 
-const role: Role = Role.Admin
-console.log(role)
+let person: Person;
+
+//หากข้อมูลไม่ครบตาม interface จะเกิด Error
+person = {
+    name: 'Beer',
+    age: 28,
+    gender: 'Male'
+}
