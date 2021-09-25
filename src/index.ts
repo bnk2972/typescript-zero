@@ -1,19 +1,16 @@
-interface Website {
-    url: string;
+interface Person {
+    firstName: string,
+    lastName: string,
+    // Optional Props
+    middleName?: string,
+    // ReadOnly
+    readonly gender: 'Male' | 'Female'
 }
 
-interface Article {
-    title: string;
-    content: string;
-}
-//extends ได้มากกว่า 1 interface
-interface BlogPost extends Website, Article {
-    views: number;
+let beer: Person = {
+    firstName: 'Nattapadtanasak',
+    lastName: 'Kongpetsak',
+    gender: 'Male'
 }
 
-const post: BlogPost = {
-    url: 'www.facebook.com',
-    title: 'Developer',
-    content: 'My Life',
-    views: 200
-}
+// beer.gender = 'Female' 
