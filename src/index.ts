@@ -1,19 +1,18 @@
-type Item = string | number | unknown[]
+// const theme = {
+//     colors: {
+//         amethyst: '#9b59b6' as const,
+//         carrot: '#e67e22' as const // const assertions
+//     }
+// }
 
-function isNumber(item: Item): item is number {
-    return typeof item === 'number'
-}
-
-function truncate(item: Item, lenght: number): Item {
-    //number
-    if (isNumber(item)) {
-        return Math.floor(item / 10 ** (lenght - 1))
+const theme = {
+    colors: {
+        amethyst: '#9b59b6',
+        carrot: '#e67e22'
     }
+} as const
 
-    //string || unknow[]
-    return item.slice(0, lenght)
-}
+// theme.colors.carrot = '#eee'
+//... 
 
-console.log(truncate('Hello', 3)) //'Hel'
-console.log(truncate(12345, 3)) //'123'
-console.log(truncate([1, 2, 3, 4, 5], 3)) //[1, 2, 3]
+const carrot = theme.colors.amethyst
