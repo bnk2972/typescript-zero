@@ -1,18 +1,21 @@
-// const theme = {
-//     colors: {
-//         amethyst: '#9b59b6' as const,
-//         carrot: '#e67e22' as const // const assertions
-//     }
-// }
+type verticalAlignment = 'top' | 'middle' | 'bottom'
+type horizontalAlignment = 'left' | 'center' | 'right'
 
-const theme = {
-    colors: {
-        amethyst: '#9b59b6',
-        carrot: '#e67e22'
-    }
-} as const
+// type Aligment =
+//     | 'top-left'
+//     | 'top-center'
+//     | 'top-right'
+//     | 'middle-center'
+//     | 'middle-left'
+//     | 'middle-right'
+//     | 'bottom-center'
+//     | 'bottom-left'
+//     | 'bottom-right'
 
-// theme.colors.carrot = '#eee'
-//... 
+type Aligment = `${verticalAlignment}-${horizontalAlignment}`
 
-const carrot = theme.colors.amethyst
+function alignBox(alignment: Aligment) {
+
+}
+
+alignBox('middle-left')
