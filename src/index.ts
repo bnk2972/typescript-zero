@@ -1,10 +1,10 @@
-function uppercaseFirstLetter(str: null | string | undefined) {
-    if (typeof str === 'string' && str.length) {
-        return str[0].toUpperCase()
-    }
-    return ''
+function fixed(num: number) {
+    return num.toFixed(2)
 }
 
-uppercaseFirstLetter('Beer')
-uppercaseFirstLetter(null) //Compile Error
-uppercaseFirstLetter('')
+// let a: any = '100'
+let a: unknown = 100
+
+if (typeof a === 'number') {
+    fixed(a)
+}
