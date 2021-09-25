@@ -1,10 +1,13 @@
-function fixed(num: number) {
-    return num.toFixed(2)
-}
+function checkVoid() {}
+checkVoid()
 
-// let a: any = '100'
-let a: unknown = 100
-
-if (typeof a === 'number') {
-    fixed(a)
+function formatDiscount(disAmt: number | string) {
+    switch (typeof disAmt) {
+        case 'number':
+            return disAmt.toFixed(2)
+        case 'string':
+            return Number(disAmt).toFixed(2)
+        default: 
+            return disAmt
+    }
 }
