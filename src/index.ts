@@ -1,16 +1,19 @@
-//Overloading เป็นฟีเจอร์ที่สามารถอนุญาตให้ตั้งชื่อฟังก์ชันซ้ำกันได้
-//แต่ parameter & return type คือต้องแตกต่างกัน
-function addInt(n: number, m: number): number
-function addInt(n: string, m: string): string
-function addInt(n: unknown, m: unknown): unknown {
-    if (typeof n === 'number' && typeof m === 'number') return n + m
-    if (typeof n === 'string' && typeof m === 'string') {
-        return `${parseInt(n) + parseInt(m)}`
-    }
+type Item = string | number | unknown[]
 
-    throw new Error('must be the same type')
+function isNumber(item: Item): item is number {
+    return typeof item === 'number'
 }
 
-console.log(addInt(1, 2))
-console.log(addInt('3', '4'))
-// console.log(addInt(1, '3'))
+function truncate(item: Item, lenght: number): Item {
+    //number
+    if (isNumber(item)) {
+        return Math.floor(item / 10 ** (lenght - 1))
+    }
+
+    //string || unknow[]
+    return item.slice(0, lenght)
+}
+
+console.log(truncate('Hello', 3)) //'Hel'
+console.log(truncate(12345, 3)) //'123'
+console.log(truncate([1, 2, 3, 4, 5], 3)) //[1, 2, 3]
