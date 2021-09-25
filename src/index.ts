@@ -1,7 +1,6 @@
-const num1: readonly number[] = [1, 2, 3]
-// num[0] = 2
-const num2: ReadonlyArray<number> = [1, 2, 3]
-
-// const num3 = num2 
-const num3 = num2 as number[]
-num3[0] = 2
+// const dateRange = ['2021-01-01', '2021-09-30']
+const dateRange: [startDate: string, endDate: string] = ['2021-01-01', '2021-09-30']
+// dateRange[2] = '2021-02-01'
+dateRange.push('2021-02-01')
+console.log(dateRange)
+// console.log(dateRange[2])
