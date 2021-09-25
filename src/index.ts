@@ -1,16 +1,22 @@
-interface Person {
-    firstName: string,
-    lastName: string,
-    // Optional Props
-    middleName?: string,
-    // ReadOnly
-    readonly gender: 'Male' | 'Female'
+type Role = 'Admin' | 'Manager' | 'Employee'
+const role: Role = 'Admin'
+
+type Website = {
+    url: string;
 }
 
-let beer: Person = {
-    firstName: 'Nattapadtanasak',
-    lastName: 'Kongpetsak',
-    gender: 'Male'
+type Article = {
+    title: string;
+    content: string;
+}
+//extends ได้มากกว่า 1 interface
+type BlogPost = Website & Article & {
+    views: number;
 }
 
-// beer.gender = 'Female' 
+const post: BlogPost = {
+    url: 'www.facebook.com',
+    title: 'Developer',
+    content: 'My Life',
+    views: 200
+}
