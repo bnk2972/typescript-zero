@@ -1,21 +1,34 @@
-type verticalAlignment = 'top' | 'middle' | 'bottom'
-type horizontalAlignment = 'left' | 'center' | 'right'
+// type Printable = string | string[]
 
-// type Aligment =
-//     | 'top-left'
-//     | 'top-center'
-//     | 'top-right'
-//     | 'middle-center'
-//     | 'middle-left'
-//     | 'middle-right'
-//     | 'bottom-center'
-//     | 'bottom-left'
-//     | 'bottom-right'
+// const text: Printable = 'my message'
 
-type Aligment = `${verticalAlignment}-${horizontalAlignment}`
+// function format(thing: Printable): string {
+//     if (Array.isArray(thing)) return thing.join(', ')
+//     return thing
+// }
 
-function alignBox(alignment: Aligment) {
+// format(['Hello', 'Hi'])
+// format('hi')
 
+interface Human {
+    name: string;
+    talk: () => void;
 }
 
-alignBox('middle-left')
+interface Cat {
+    name: string;
+    walk: () => void;
+    meow: () => void;
+}
+
+const person: Human | Cat = {
+    name: 'Beer',
+    talk() {
+        console.log('Hello')
+    },
+    meow() {
+        console.log('Meow')
+    }
+}
+
+// person.
