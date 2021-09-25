@@ -1,14 +1,19 @@
-interface Person {
-    name: string;
-    age: number;
-    gender: string;
+interface Website {
+    url: string;
 }
 
-let person: Person;
+interface Article {
+    title: string;
+    content: string;
+}
+//extends ได้มากกว่า 1 interface
+interface BlogPost extends Website, Article {
+    views: number;
+}
 
-//หากข้อมูลไม่ครบตาม interface จะเกิด Error
-person = {
-    name: 'Beer',
-    age: 28,
-    gender: 'Male'
+const post: BlogPost = {
+    url: 'www.facebook.com',
+    title: 'Developer',
+    content: 'My Life',
+    views: 200
 }
