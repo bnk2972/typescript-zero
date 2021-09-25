@@ -1,5 +1,7 @@
-let num1: Array<number> = [1, 2, 3]
-let arr1: Array<unknown> = [1, '2', 'beer']
+const num1: readonly number[] = [1, 2, 3]
+// num[0] = 2
+const num2: ReadonlyArray<number> = [1, 2, 3]
 
-let num2: number[] = [1, 2, 3]
-let arr2: unknown[] = [1, 2, false, 'beer']
+// const num3 = num2 
+const num3 = num2 as number[]
+num3[0] = 2
