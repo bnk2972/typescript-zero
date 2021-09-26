@@ -1,8 +1,10 @@
-type MyNonNullable<T> = T extends null | undefined ? never : T
+type MyRecord<T extends string | number | symbol, U> = {
+    [K in T]: U;
+}
 
-//T => number ? number
-//T => string ? string
-//T => null ? never
-//T => null ? never
-// type MyNonNull = MyNonNullable<number | string | null | undefined>
-type MyNonNull = NonNullable<number | string | null | undefined>
+// type MyPerson = {
+//  name: string;
+//  address: string;
+// }
+// type MyPerson = MyRecord<'name' | 'address', string>
+type Person = Record<'name' | 'address', string>
