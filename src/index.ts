@@ -1,5 +1,5 @@
 class BankAccount {
-    balance: number;
+    protected balance: number;
     
     constructor(balance: number) {
         this.balance = balance
@@ -15,8 +15,9 @@ class BankAccount {
 }
 
 class SavingAccount extends BankAccount {
-    static interestRate = 3.5;
-    debitCard: number;
+    static readonly interestRate = 3.5;
+    //อนุญาตให้เขียนครั้งเดียวใน constructor
+    private readonly debitCard: number;
 
     constructor(balance: number, debitCard: number) {
         super(balance)
@@ -29,7 +30,7 @@ class SavingAccount extends BankAccount {
 }
 
 class FixedAccount extends BankAccount {
-    static interestRate = 5;
+    static readonly interestRate = 5;
 
     constructor(balance: number) {
         super(balance)
@@ -43,4 +44,4 @@ class FixedAccount extends BankAccount {
 
 const myAccount1 = new SavingAccount(1000, 1231523)
 myAccount1.deposit(100)
-console.log(myAccount1.balance)
+// console.log(myAccount1.debitCard)
