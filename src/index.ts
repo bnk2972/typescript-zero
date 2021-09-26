@@ -1,9 +1,28 @@
-// เง่ือนไข Generic 
-// function merge<U extends object, V extends object>(obj1: U, obj2: V) {
-// แบบนี้จะไม่เหมาะสม
-function merge(obj1: object, obj2: object) {
-    return { ...obj1, ...obj2 }
+// T extends U ? X : Y
+type NumOrString = string[] | number[] | number | string | undefined
+
+type ArrayFilter<T> = T extends unknown[] ? T : never
+
+// type ArrayOnly = string[] | number[] | never | never | never
+type ArrayOnly = ArrayFilter<NumOrString>
+
+const person = {
+    name: 'Beer',
+    age: 28,
+    getName() {
+        return this.name
+    },
+    getAge() {
+        return this.age
+    }
 }
 
-const result = merge({ name: 'beer' }, { age: 28 })
-console.log(result)
+type Person = typeof person
+
+type FunctionPropKeys<T> = {
+    [K in keyof T]: T[K] extends Function ? K : never
+}[keyof T]
+
+type PersonFunctionKeys = FunctionPropKeys<Person>
+
+// type Age = Person['age']
