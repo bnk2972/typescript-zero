@@ -1,34 +1,44 @@
-// type Printable = string | string[]
-
-// const text: Printable = 'my message'
-
-// function format(thing: Printable): string {
-//     if (Array.isArray(thing)) return thing.join(', ')
-//     return thing
-// }
-
-// format(['Hello', 'Hi'])
-// format('hi')
-
-interface Human {
-    name: string;
-    talk: () => void;
+//Discriminated Unions การแยก union โดยการกำหนดประเภทเพื่อระบุชนิดของ interface ได้อย่างถูกต้อง
+interface Triangle {
+    type: 'traingle';
+    base: number;
+    height: number;
 }
 
-interface Cat {
-    name: string;
-    walk: () => void;
-    meow: () => void;
+interface Regtangle {
+    type: 'regtangle';
+    width: number;
+    height: number;
 }
 
-const person: Human | Cat = {
-    name: 'Beer',
-    talk() {
-        console.log('Hello')
-    },
-    meow() {
-        console.log('Meow')
+interface Circle {
+    type: 'circle';
+    radius: number;
+}
+
+type Shape = Triangle | Regtangle | Circle;
+
+function assetNever(x: never): never {
+    throw new Error('Unexpected value. Should have been never.')
+}
+
+function area(s: Shape) {
+    switch (s.type) {
+        case 'circle':
+            return Math.PI * s.radius ** 2
+        case 'traingle':
+            return 0.5 * s.height * s.base
+        case 'regtangle':
+            return s.width * s.height
+        default:
+            return assetNever(s)
     }
+    //Circle
+    // return Math.PI * s.radius ** 2
+    //Regtangle
+    // return s.width * s.height
+    //Other
+    // return assetNever(s)
 }
 
-// person.
+area({ width: 20, height: 10, type: 'regtangle' })
