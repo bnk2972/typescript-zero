@@ -1,16 +1,9 @@
-//Recusive
-type ArrayItem<T> = T extends (infer U)[] ? ArrayItem<U> : T
+type T10 = Uppercase<'hello'>
+type T11 = Lowercase<'HELLO'>
+type T12 = Capitalize<'hello'>
+type T13 = Uncapitalize<'Hello'>
 
-// T => number[][], U => number[]
-// T => number[], U => number
-// T => number =>
-declare function flatten<T extends unknown[]>(arr: T): ArrayItem<T>[]
-
-const x = [
-    [1, 2],
-    [3, '4']
-] // number[][]
-
-const arr = flatten(x)  // typeof arr === number[]
-// [1, 2, 3, 4]
-// console.log(arr)
+type T20 = Uppercase<'hello' | 'hi'>
+type T21 = Lowercase<'HELLO' | 'HI'>
+type T22 = Capitalize<'hello' | 'hi'>
+type T23 = Uncapitalize<'Hello' | 'Hi'>
