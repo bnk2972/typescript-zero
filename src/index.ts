@@ -1,7 +1,45 @@
-//Indexable Types
-interface States {
-    [ state: string ]: boolean;
-    // writeable: number;
+//Mapped Types
+interface Course {
+    title: string;
+    credit: number;
 }
 
-const states: States = { enabled: true, readable: true, /* writeable: 123 */ }
+// type CourseReadOnly = {
+//     readonly title: string;
+//     readonly credit: number;
+// }
+
+type CourseReadOnly = {
+    readonly [K in keyof Course]: Course[K]
+}
+
+// ทำทุกส่วนให้เป็น Readonly 
+// type CourseReadOnlyWithSemaster = {
+//     readonly title: string;
+//     readonly credit: number;
+//     semaster: string;
+// }
+
+// type CourseReadOnlyWithSemaster = CourseReadOnly & { semaster: string }
+type CourseReadOnlyWithSemaster = { 
+    readonly [K in keyof Course]: Course[K];
+} & { semaster: string }
+
+// type CourseOptional = {
+//     title?: string;
+//     credit?: number;
+// }
+
+type CourseOptional = {
+    [K in keyof Course]?: Course[K]
+}
+
+// ลบ Optional
+// type CourseReadOnlyRequired = {
+//     readonly title: string;
+//     readonly credit: number;
+// }
+
+type CourseReadOnlyRequired = {
+    readonly [K in keyof CourseOptional]-?: CourseOptional[K]
+}
