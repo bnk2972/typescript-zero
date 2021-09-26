@@ -1,23 +1,50 @@
+// type Person = {
+//     name?: string;
+//     age?: number;
+//     address?: string;
+// }
+
+// Required
+// type MyRequirePerson = {
+//     name: string;
+//     age: number;
+//     address: string;
+// }
+
+// type MyRequired<T> = {
+//     [K in keyof T]-?: T[K]
+// }
+// type MyRequiredPerson = MyRequired<Person>
+// type MyRequiredPerson = Required<Person>
+
+// type Person = {
+//     name?: string;
+//     age?: number;
+//     address?: string;
+// }
+
+// type MyPartial<T> = {
+//     [K in keyof T]?: T[K]
+// }
+
+// type MyPartialPerson = MyPartial<Person>
+// type MyPartialPerson = Partial<Person>
+
 type Person = {
     name: string;
     age: number;
     address: string;
 }
 
+// type Person = {
+//     readonly name: string;
+//     readonly age: number;
+//     readonly address: string;
+// }
 
-type MyPick<T, K extends keyof T> = {
-    [P in K]: T[P]
+type MyReadonly<T> = {
+    readonly [K in keyof T]: T[K]
 }
-// type MyNameAndAge = {
-//     name: string;
-//     age: number;
-// }
-// type MyNameAndAge = MyPick<Person, 'name' | 'age'>
-type MyNameAndAge = Pick<Person, 'name' | 'age'>
 
-// type MyAddress = {
-//     address: string;
-// }
-type MyOmit<T, K extends keyof T> = MyPick<T, Exclude<keyof T, K>>
-// type MyAddress = MyOmit<Person, 'name' | 'age'>
-type MyAddress = Omit<Person, 'name' | 'age'>
+// type MyReadOnlyPerson = MyReadonly<Person>
+type MyReadOnlyPerson = Readonly<Person>
