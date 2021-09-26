@@ -1,7 +1,8 @@
-// type MyExclude<T, U> = T extends U ? never : T
-// type MyAddress = MyExclude<'name' | 'age' | 'address', 'name' | 'age'>
-type MyAddress = Exclude<'name' | 'age' | 'address', 'name' | 'age'>
+type MyNonNullable<T> = T extends null | undefined ? never : T
 
-// type MyExtract<T, U> = T extends U ? T : never
-// type MyNameAndAge = MyExtract<'name' | 'age' | 'address', 'name' | 'age'>
-type MyNameAndAge = Extract<'name' | 'age' | 'address', 'name' | 'age'>
+//T => number ? number
+//T => string ? string
+//T => null ? never
+//T => null ? never
+// type MyNonNull = MyNonNullable<number | string | null | undefined>
+type MyNonNull = NonNullable<number | string | null | undefined>
