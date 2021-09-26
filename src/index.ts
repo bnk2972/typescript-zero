@@ -1,28 +1,10 @@
-// T extends U ? X : Y
-type NumOrString = string[] | number[] | number | string | undefined
+type Unpacked<T> = T extends (infer R)[] ? R : T
+// type StringAndNumberUnpacked = string
+type StringAndNumberUnpacked = Unpacked<string[] | number[]>
 
-type ArrayFilter<T> = T extends unknown[] ? T : never
+// Unpacked<string> => string
+// Unpacked<number[]> => number
 
-// type ArrayOnly = string[] | number[] | never | never | never
-type ArrayOnly = ArrayFilter<NumOrString>
-
-const person = {
-    name: 'Beer',
-    age: 28,
-    getName() {
-        return this.name
-    },
-    getAge() {
-        return this.age
-    }
-}
-
-type Person = typeof person
-
-type FunctionPropKeys<T> = {
-    [K in keyof T]: T[K] extends Function ? K : never
-}[keyof T]
-
-type PersonFunctionKeys = FunctionPropKeys<Person>
-
-// type Age = Person['age']
+type Swapped<T> = T extends [infer R, infer S] ? [S, R] : never
+// [number, string]
+type StringNumberSwapped = Swapped<[string, number]>
