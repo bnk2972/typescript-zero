@@ -1,9 +1,7 @@
-type T10 = Uppercase<'hello'>
-type T11 = Lowercase<'HELLO'>
-type T12 = Capitalize<'hello'>
-type T13 = Uncapitalize<'Hello'>
+// type MyExclude<T, U> = T extends U ? never : T
+// type MyAddress = MyExclude<'name' | 'age' | 'address', 'name' | 'age'>
+type MyAddress = Exclude<'name' | 'age' | 'address', 'name' | 'age'>
 
-type T20 = Uppercase<'hello' | 'hi'>
-type T21 = Lowercase<'HELLO' | 'HI'>
-type T22 = Capitalize<'hello' | 'hi'>
-type T23 = Uncapitalize<'Hello' | 'Hi'>
+// type MyExtract<T, U> = T extends U ? T : never
+// type MyNameAndAge = MyExtract<'name' | 'age' | 'address', 'name' | 'age'>
+type MyNameAndAge = Extract<'name' | 'age' | 'address', 'name' | 'age'>
