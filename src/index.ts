@@ -1,4 +1,7 @@
-class BankAccount {
+// abstarct class คือ class ที่ไม่สมบูรณ์ในตัวมันเอง 
+// มีหน้าที่ในการระบุว่า class อื่นที่จะ extends นั้นจะต้องมีองค์ประกอบ abstarct class เหมือนกัน
+
+abstract class BankAccount {
     // protected balance: number;
     
     // constructor(balance: number) {
@@ -14,6 +17,9 @@ class BankAccount {
     deposit(amount: number) {
         if (amount > 0) this.balance += amount 
     }
+
+    //ไม่มีส่วนในการ Imprement
+    abstract getInterest(): void;
 }
 
 class SavingAccount extends BankAccount {
