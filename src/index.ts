@@ -1,10 +1,16 @@
-type Unpacked<T> = T extends (infer R)[] ? R : T
-// type StringAndNumberUnpacked = string
-type StringAndNumberUnpacked = Unpacked<string[] | number[]>
+//Recusive
+type ArrayItem<T> = T extends (infer U)[] ? ArrayItem<U> : T
 
-// Unpacked<string> => string
-// Unpacked<number[]> => number
+// T => number[][], U => number[]
+// T => number[], U => number
+// T => number =>
+declare function flatten<T extends unknown[]>(arr: T): ArrayItem<T>[]
 
-type Swapped<T> = T extends [infer R, infer S] ? [S, R] : never
-// [number, string]
-type StringNumberSwapped = Swapped<[string, number]>
+const x = [
+    [1, 2],
+    [3, '4']
+] // number[][]
+
+const arr = flatten(x)  // typeof arr === number[]
+// [1, 2, 3, 4]
+// console.log(arr)
