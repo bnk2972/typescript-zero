@@ -1,16 +1,23 @@
-type MyParameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
-
 type Person = {
     name: string;
     age: number;
+    address: string;
 }
 
-function get(person: Person, key: keyof Person) {
-    return person[key]
+
+type MyPick<T, K extends keyof T> = {
+    [P in K]: T[P]
 }
+// type MyNameAndAge = {
+//     name: string;
+//     age: number;
+// }
+// type MyNameAndAge = MyPick<Person, 'name' | 'age'>
+type MyNameAndAge = Pick<Person, 'name' | 'age'>
 
-type Fn = typeof get
-
-// type myGetParams = [person: Person, key: 'name' | 'age']
-// type myGetParams = MyParameters<Fn>
-type myGetParams = Parameters<Fn>
+// type MyAddress = {
+//     address: string;
+// }
+type MyOmit<T, K extends keyof T> = MyPick<T, Exclude<keyof T, K>>
+// type MyAddress = MyOmit<Person, 'name' | 'age'>
+type MyAddress = Omit<Person, 'name' | 'age'>
