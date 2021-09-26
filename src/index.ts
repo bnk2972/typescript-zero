@@ -1,21 +1,26 @@
-//Intersection Types
-interface Indentity {
-    id: number;
+//Keyof
+interface Person {
     name: string;
-}
-
-interface Contact {
-    email: string;
-    phone: string;
+    age: number;
     address: string;
 }
 
-type Employee = Indentity & Contact
+// type PersonKeys = 'name' | 'age' | 'address'
+type PersonKeys = keyof Person
+// type PersonAgeType = number
+type PersonAgeType = Person['age']
+// type PersonValue = string | number
+// type PersonValue = Person['name' | 'age' | 'address']
+type PersonValue = Person[keyof Person]
 
-const beer: Employee = {
-    id: 11001,
+const person: Person = {
     name: 'beer',
-    email: 'beer@livingmobile.me',
-    phone: '064-643-2333',
-    address: 'Nakhonsawan'
+    age: 28,
+    address: 'NK'
 }
+
+function printValuePerson(key: keyof Person): void {
+    console.log(person[key])
+}
+
+printValuePerson('name')
