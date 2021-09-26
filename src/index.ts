@@ -1,44 +1,15 @@
-// function lastNum(arr: number[], count: number) {
-//     return arr.slice(arr.length - count)
+// interface Dict<T> {
+//     [key: string]: T
 // }
 
-// function lastStr(arr: string[], count: number) {
-//     return arr.slice(arr.length - count)
-// }
-
-// function last<T>(arr: T[], count: number) {
-//     return arr.slice(arr.length - count)
-// }
-
-const last = <T>(arr: T[], count: number) => {
-    return arr.slice(arr.length - count)
+type Dict<T> = {
+    [key: string]: T
 }
 
-last<number>([1, 2, 3, 4, 5], 3) //[3, 4, 5]
-last<string>(['A', 'B', 'C', 'D', 'E'], 2) //['D', 'E']
 
-class Stack<T> {
-    private items: T[] = []
-
-    push (item: T) {
-        this.items.push(item)
-    }
-
-    pop (): T | undefined {
-        return this.items.pop()
-    }
+function initialize<T>(keys: string[], value: T): Dict<T> {
+    return keys.reduce((result, key) => ({ ...result, [key]: value }), {})
 }
 
-const s = new Stack<number>()
-s.push(1)
-s.push(2)
-s.push(3)
-
-s.pop()
-
-const t = new Stack<string>()
-t.push('A')
-t.push('B')
-t.push('C')
-
-t.pop()
+const result = initialize(['a', 'b', 'c'], 0)
+console.log(result)
