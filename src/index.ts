@@ -1,55 +1,44 @@
-// abstarct class คือ class ที่ไม่สมบูรณ์ในตัวมันเอง 
-// มีหน้าที่ในการระบุว่า class อื่นที่จะ extends นั้นจะต้องมีองค์ประกอบ abstarct class เหมือนกัน
+// function lastNum(arr: number[], count: number) {
+//     return arr.slice(arr.length - count)
+// }
 
-abstract class BankAccount {
-    // protected balance: number;
-    
-    // constructor(balance: number) {
-    //     this.balance = balance
-    // }
+// function lastStr(arr: string[], count: number) {
+//     return arr.slice(arr.length - count)
+// }
 
-    constructor(protected balance: number) {}
+// function last<T>(arr: T[], count: number) {
+//     return arr.slice(arr.length - count)
+// }
 
-    withdraw(amount: number) {
-        if (amount <= this.balance) this.balance -= amount
-    }
-
-    deposit(amount: number) {
-        if (amount > 0) this.balance += amount 
-    }
-
-    //ไม่มีส่วนในการ Imprement
-    abstract getInterest(): void;
+const last = <T>(arr: T[], count: number) => {
+    return arr.slice(arr.length - count)
 }
 
-class SavingAccount extends BankAccount {
-    static readonly interestRate = 3.5;
-    //อนุญาตให้เขียนครั้งเดียวใน constructor
-    // private readonly debitCard: number;
+last<number>([1, 2, 3, 4, 5], 3) //[3, 4, 5]
+last<string>(['A', 'B', 'C', 'D', 'E'], 2) //['D', 'E']
 
-    constructor(balance: number, private readonly debitCard: number) {
-        super(balance)
-        // this.debitCard = debitCard
+class Stack<T> {
+    private items: T[] = []
+
+    push (item: T) {
+        this.items.push(item)
     }
 
-    getInterest() {
-        return this.balance * SavingAccount.interestRate
+    pop (): T | undefined {
+        return this.items.pop()
     }
 }
 
-class FixedAccount extends BankAccount {
-    static readonly interestRate = 5;
+const s = new Stack<number>()
+s.push(1)
+s.push(2)
+s.push(3)
 
-    constructor(balance: number) {
-        super(balance)
-    }
+s.pop()
 
-    getInterest() {
-        if (this.balance < 10_000) return this.balance
-        return this.balance * SavingAccount.interestRate
-    }
-}
+const t = new Stack<string>()
+t.push('A')
+t.push('B')
+t.push('C')
 
-const myAccount1 = new SavingAccount(1000, 1231523)
-myAccount1.deposit(100)
-// console.log(myAccount1.debitCard)
+t.pop()
