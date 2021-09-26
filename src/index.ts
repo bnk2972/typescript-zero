@@ -1,36 +1,46 @@
-// const beer = {
-//     name: 'Nattapadtanasak',
-//     age: 28,
-//     printDetail() {
-//         console.log('name: ', this.name, 'age: ', this.age)
-//     }
-// }
-
-// const maree = {
-//     name: 'Maree',
-//     age: 25,
-//     printDetail() {
-//         console.log('name: ', this.name, 'age: ', this.age)
-//     }
-// }
-
-class Person {
-    static University = 'Kasetsart'
-    name: string;
-    age: number;
-
-    constructor(name: string, age: number) { // ผู้สร้าง
-        this.name = name
-        this.age = age
+class BankAccount {
+    balance: number;
+    
+    constructor(balance: number) {
+        this.balance = balance
     }
 
-    printDetail() {
-        console.log('name: ', this.name, 'age: ', this.age, Person.University)
+    withdraw(amount: number) {
+        if (amount <= this.balance) this.balance -= amount
+    }
+
+    deposit(amount: number) {
+        if (amount > 0) this.balance += amount 
     }
 }
 
-const beer = new Person('Beer', 28)
-console.log(beer)
-const malee = new Person('Melee', 25)
-console.log(malee)
-malee.printDetail()
+class SavingAccount extends BankAccount {
+    static interestRate = 3.5;
+    debitCard: number;
+
+    constructor(balance: number, debitCard: number) {
+        super(balance)
+        this.debitCard = debitCard
+    }
+
+    getInterest() {
+        return this.balance * SavingAccount.interestRate
+    }
+}
+
+class FixedAccount extends BankAccount {
+    static interestRate = 5;
+
+    constructor(balance: number) {
+        super(balance)
+    }
+
+    getInterest() {
+        if (this.balance < 10_000) return this.balance
+        return this.balance * SavingAccount.interestRate
+    }
+}
+
+const myAccount1 = new SavingAccount(1000, 1231523)
+myAccount1.deposit(100)
+console.log(myAccount1.balance)
